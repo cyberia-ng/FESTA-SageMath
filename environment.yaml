@@ -1,0 +1,7 @@
+name: sage-workspace
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - sage=9.8
+  - pycryptodome=3
