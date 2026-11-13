@@ -4,8 +4,8 @@ functions which FESTA call to compute and evaluate this isogeny.
 
 The (2^b,2^b)-isogeny chain is computed in three steps:
 
-1. A gluing isogeny which takes a pair of supersingular elliptic curves (E, E') 
-   and pairs of points (P, Q), (P', Q') and outputs a Jacobian of a hyperelliptic 
+1. A gluing isogeny which takes a pair of supersingular elliptic curves (E, E')
+   and pairs of points (P, Q), (P', Q') and outputs a Jacobian of a hyperelliptic
    curve J(H) and a pair of divisors (D, D').
 
 2. An isogeny between Jacobians of hyperelliptic curves with domain J(H) and kernel
@@ -14,8 +14,8 @@ The (2^b,2^b)-isogeny chain is computed in three steps:
 3. A splitting isogeny which takes J(H) and outputs a pair of supersingular elliptic
    curves.
 
-The formula used follow https://ia.cr/2022/1283 for the compact explicit formula 
-for the gluing isogeny and follow Benjamin Smith's thesis for the Richelot 
+The formula used follow https://ia.cr/2022/1283 for the compact explicit formula
+for the gluing isogeny and follow Benjamin Smith's thesis for the Richelot
 correspondence and Splitting isogeny. http://iml.univ-mrs.fr/~kohel/phd/thesis_smith.pdf
 
 This code has been adapted from the file:
@@ -420,11 +420,7 @@ def FromJacToProd(G1, G2, G3, N_constant):
 
         # apply homography
         # y = v1 x + v0 =>
-        U = (
-            U_input[0] * v_map**2
-            + U_input[1] * u_map * v_map
-            + U_input[2] * u_map**2
-        )
+        U = U_input[0] * v_map**2 + U_input[1] * u_map * v_map + U_input[2] * u_map**2
         V = V_input[0] * v_map**3 + V_input[1] * u_map * v_map**2
         V = V % U
 

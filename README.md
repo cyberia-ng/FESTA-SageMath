@@ -24,9 +24,9 @@ Note a user's keypair is stored within the `FESTA` object when the `keygen()` me
 from festa import FESTA
 from parameters import festa_params_128
 
-# Initialisation 
+# Initialisation
 alice = FESTA(festa_params_128)
-bob   = FESTA(festa_params_128)
+bob = FESTA(festa_params_128)
 
 # Keygen
 alice.keygen()

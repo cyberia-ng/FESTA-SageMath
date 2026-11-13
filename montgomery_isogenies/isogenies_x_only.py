@@ -9,7 +9,7 @@ represented projectively as x(P) = (X : Z) which we call KummerPoints
 However, for FESTA(+) we always need the full point eventually for either
 additions or the (2,2)-isogeny, so we need a way to recover the full point.
 
-The trick we use is that we always evaluate our isogenies on torsion bases, 
+The trick we use is that we always evaluate our isogenies on torsion bases,
 so we can use the Weil pairing to recover phi(P) up to an overall sign.
 
 This file takes elliptic curves and points on these curves, maps them to the

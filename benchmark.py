@@ -1,7 +1,7 @@
 """
-This file runs FESTA in the same way as `example_festa.sage` but 
-additionally uses cProfile to output profiling statistics of 
-keygen, encryption and decryption. This is used primarily to 
+This file runs FESTA in the same way as `example_festa.sage` but
+additionally uses cProfile to output profiling statistics of
+keygen, encryption and decryption. This is used primarily to
 study which functions consume the most time in each step to allow
 us to identify areas which deserve the most attention for optimisation
 
@@ -100,7 +100,7 @@ for _ in range(N_KG):
 #
 pr_keygen.disable()
 pr_keygen.dump_stats("festa_keygen.cProfile")
-print_info(f"Keygen took: {(time.time() - keygen_time)/N_KG:.3f} seconds")
+print_info(f"Keygen took: {(time.time() - keygen_time) / N_KG:.3f} seconds")
 p = pstats.Stats("festa_keygen.cProfile")
 p.strip_dirs().sort_stats("cumtime").print_stats(30)
 
@@ -118,7 +118,7 @@ for _ in range(N_Enc):
 #
 pr_encrypt.disable()
 pr_encrypt.dump_stats("festa_encrypt.cProfile")
-print_info(f"Encrypt took: {(time.time() - encrypt_time)/N_Enc:.3f} seconds")
+print_info(f"Encrypt took: {(time.time() - encrypt_time) / N_Enc:.3f} seconds")
 p = pstats.Stats("festa_encrypt.cProfile")
 p.strip_dirs().sort_stats("cumtime").print_stats(30)
 
@@ -135,7 +135,7 @@ for _ in range(N_Dec):
 #
 pr_decrypt.disable()
 pr_decrypt.dump_stats("festa_decrypt.cProfile")
-print_info(f"Decrypt took: {(time.time() - decrypt_time)/N_Dec:.3f} seconds")
+print_info(f"Decrypt took: {(time.time() - decrypt_time) / N_Dec:.3f} seconds")
 p = pstats.Stats("festa_decrypt.cProfile")
 p.strip_dirs().sort_stats("cumtime").print_stats(60)
 

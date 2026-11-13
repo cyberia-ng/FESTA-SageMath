@@ -1,5 +1,5 @@
 """
-This file is written to hold the compression helper functions for the 
+This file is written to hold the compression helper functions for the
 main (de)compression functions of FESTA(+).
 """
 

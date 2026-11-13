@@ -1,5 +1,5 @@
 """
-Implementation of x-only isogenies between the Kummer Lines of 
+Implementation of x-only isogenies between the Kummer Lines of
 Montgomery Curves
 
 Taken from:
@@ -11,7 +11,7 @@ USAGE:
 
 phi = KummerLineIsogeny(domain, kernel, degree)
 
-The codomain is accessed using `phi.codomain()` and the  elliptic curve 
+The codomain is accessed using `phi.codomain()` and the  elliptic curve
 can be lifted from the KummerLine `phi.dodomain().curve()`.
 
 Evaluation of the isogeny is done via `phi(xQ)` for some KummerPoint `xQ`.
@@ -19,7 +19,7 @@ Evaluation of the isogeny is done via `phi(xQ)` for some KummerPoint `xQ`.
 NOTE:
 
 Where the degree can be composite, but for efficiency needs to be smooth.
-For a 2-isogeny, the point P = (0,0) cannot be used as a kernel 
+For a 2-isogeny, the point P = (0,0) cannot be used as a kernel
 
 ========================================================================
 
@@ -45,16 +45,16 @@ Vélu-like algorithms:
     A faster way to the CSIDH
     Michael Meyer and Steffen Reith
 
-VéluSqrt for large ell isogenies 
+VéluSqrt for large ell isogenies
 
     VéluSqrt: https://velusqrt.isogeny.org/
     Faster computation of isogenies of large prime degree
     Daniel J. Bernstein, Luca De Feo, Antonin Leroux, Benjamin Smith
 
-Future Work: 
+Future Work:
 
 - Optimise VéluSqrt, it seems to be underperforming with a threshold of about 1000
-  rather than 100 
+  rather than 100
 - Include isomorphisms of Kummer Lines
 - allow composition by defining __mul__ on isogenies to create a composite isogeny
 """
@@ -104,9 +104,9 @@ class KummerLineIsogeny_Generic:
 
         if check:
             # TODO actually check order with has_order_D function
-            assert (
-                degree * kernel
-            ).is_zero(), "Input point does not have correct order"
+            assert (degree * kernel).is_zero(), (
+                "Input point does not have correct order"
+            )
 
     def domain(self):
         """

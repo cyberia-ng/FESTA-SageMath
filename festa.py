@@ -274,9 +274,9 @@ class FESTA:
         and the tuple of integers (aR, bR) and (aS, bS) such that
         R = [a]P + [b]Q for the canonical basis of EA[l^b]
         """
-        assert (
-            len(pk_bytes) == self.pk_bytes
-        ), "Length of compressed public key is invalid"
+        assert len(pk_bytes) == self.pk_bytes, (
+            "Length of compressed public key is invalid"
+        )
         preimage_data = (self.Pb, self.Qb, self.dA)
         EA, R, S = decompress_curve_and_two_torsion_basis(
             self.F,
@@ -336,9 +336,9 @@ class FESTA:
         if not self.pk:
             raise ValueError("A valid public key is required for compression")
 
-        assert (
-            len(ct_bytes) == 2 * self.pk_bytes
-        ), "Length of compressed ciphertext is invalid, aborting"
+        assert len(ct_bytes) == 2 * self.pk_bytes, (
+            "Length of compressed ciphertext is invalid, aborting"
+        )
 
         # Split bytes into (E1, R1, S1) and (E2, R2, S2)
         ERS1_bytes = ct_bytes[: self.pk_bytes]

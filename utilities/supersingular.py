@@ -115,7 +115,7 @@ def clear_cofactor(P, k, even_power=None):
     if even_power:
         P = P.double_iter(even_power)
         k >>= even_power
-    return k*P
+    return k * P
 
 
 def generate_point_order_D(E, D, x_start=0, even_power=None):
@@ -148,10 +148,14 @@ def compute_point_order_D(E, D, x_start=0, even_power=None):
     Wrapper function around a generator which returns the first
     point of order D
     """
-    return generate_point_order_D(E, D, x_start=x_start, even_power=even_power).__next__()
+    return generate_point_order_D(
+        E, D, x_start=x_start, even_power=even_power
+    ).__next__()
 
 
-def compute_linearly_independent_point_with_pairing(E, P, D, x_start=0, even_power=None):
+def compute_linearly_independent_point_with_pairing(
+    E, P, D, x_start=0, even_power=None
+):
     """
     Input:  An elliptic curve E / Fp2
             A point P ∈ E[D]
@@ -174,7 +178,9 @@ def compute_linearly_independent_point(E, P, D, x_start=0, even_power=None):
     Wrapper function around `compute_linearly_independent_point_with_pairing`
     which only returns a linearly independent point
     """
-    Q, _ = compute_linearly_independent_point_with_pairing(E, P, D, x_start=x_start, even_power=even_power)
+    Q, _ = compute_linearly_independent_point_with_pairing(
+        E, P, D, x_start=x_start, even_power=even_power
+    )
     return Q
 
 
@@ -195,7 +201,9 @@ def torsion_basis_with_pairing(E, D, even_power=None):
         raise ValueError(f"D must divide the point's order")
 
     P = compute_point_order_D(E, D, even_power=even_power)
-    Q, ePQ = compute_linearly_independent_point_with_pairing(E, P, D, x_start=P[0], even_power=even_power)
+    Q, ePQ = compute_linearly_independent_point_with_pairing(
+        E, P, D, x_start=P[0], even_power=even_power
+    )
 
     return P, Q, ePQ
 

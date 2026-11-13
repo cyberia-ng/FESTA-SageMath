@@ -1,5 +1,5 @@
 """
-Implementation of the Kummer Line of Montgomery Curves and the corresponding 
+Implementation of the Kummer Line of Montgomery Curves and the corresponding
 Kummer Points used for x-only Montgomery curve arithmetic
 
 Taken from:
@@ -56,8 +56,9 @@ The 3 point ladder `xQ.ladder_3_pt(xP, xPQ, m) computes xP + [m]xQ
 
 xP.multiples() generates values [l]xP by repeated differential addition. This
 is used for isogeny computations where we want to collect the the first d points
-for an isogeny of degree ell = 2d+1. 
+for an isogeny of degree ell = 2d+1.
 """
+
 import cypari2
 
 pari = cypari2.Pari()
@@ -436,7 +437,7 @@ class KummerPoint:
     # =================================== #
     # Addition and multiplication methods #
     # =================================== #
-    
+
     def _double(self):
         """
         Returns [2] self
@@ -448,7 +449,7 @@ class KummerPoint:
 
     def _double_iter(self, n):
         """
-        Returns [2^n] self, faster than generic 
+        Returns [2^n] self, faster than generic
         multiplication as we only need doubling,
         no addition.
         """
