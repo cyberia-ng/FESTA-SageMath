@@ -109,7 +109,7 @@ def isogeny_from_scalar_x_only(E, D, m, basis=None):
         P, Q = basis
 
     # Allow either an integer or tuple of integers
-    if isinstance(m, RingElement) or isinstance(m, int):
+    if isinstance(m, (RingElement, int)):
         K = P + m * Q
     else:
         assert len(m) == 2

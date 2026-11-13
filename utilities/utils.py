@@ -12,7 +12,7 @@ from sage.all import (
 
 
 def have_zero_value(*args):
-    return any([x == 0 for x in args])
+    return any(x == 0 for x in args)
 
 
 # ========================== #

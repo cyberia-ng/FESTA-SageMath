@@ -33,7 +33,6 @@ def optimised_strategy(n, mul_c=0.175):
     """
 
     eval_c = 1.000
-    mul_c = mul_c
 
     S = {1: []}
     C = {1: 0}

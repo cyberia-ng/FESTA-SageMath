@@ -93,10 +93,10 @@ class KummerLineIsogeny_Generic:
         Helper function to check the input to the isogeny class is well-formed
         """
         if not isinstance(domain, KummerLine):
-            raise ValueError(f"not a kummer line: {domain}")
+            raise TypeError(f"not a kummer line: {domain}")
 
         if not isinstance(kernel, KummerPoint):
-            raise ValueError(f"not a kummer point: {kernel}")
+            raise TypeError(f"not a kummer point: {kernel}")
 
         if kernel.parent() != domain:
             raise ValueError(f"Kernel {kernel} is not a point on {domain}")
@@ -168,7 +168,7 @@ class KummerLineIsogeny_Velu(KummerLineIsogeny_Generic):
         phi(xP) evaluates the Kummer point xP
         """
         if not isinstance(P, KummerPoint):
-            raise ValueError
+            raise TypeError
         if self._degree == 2:
             return self._evaluate_isogeny_even(P)
         return self._evaluate_isogeny(P)
@@ -397,7 +397,7 @@ class KummerLineIsogeny_VeluSqrt(KummerLineIsogeny_Generic):
         by using phi(P)
         """
         if not isinstance(P, KummerPoint):
-            raise ValueError
+            raise TypeError
         return self._evaluate_isogeny(P)
 
     def _hI_resultant(self, poly):

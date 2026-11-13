@@ -1,4 +1,5 @@
 # Python imports
+import sys
 from random import randint
 
 # Sage Imports
@@ -13,7 +14,7 @@ except ImportError as e:
     )
     print("sage -pip install -r requirements.txt")
     print(f"ImportError: {e}\n")
-    exit()
+    sys.exit()
 
 # Local Imports
 from montgomery_isogenies.isogenies_x_only import (
@@ -695,7 +696,6 @@ class FESTA:
             im_basis_bd1_E0,  # phi_A1(E0[l^b] + E0[d1])
             im_basis_d2_EA,  # phi_A2_dual(EA[d2])
         )
-
 
     def export_public_key(self):
         """

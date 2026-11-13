@@ -229,8 +229,8 @@ def precompute_elligator_tables(F):
     """
     u = 2 * F.gen()
 
-    T1 = dict()
-    T2 = dict()
+    T1 = {}
+    T2 = {}
     # TODO: estimate how large r should be
     for r in range(1, 30):
         v = 1 / (1 + u * r**2)

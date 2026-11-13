@@ -37,7 +37,6 @@ import cProfile
 import pstats
 import sys
 import time
-from random import randint
 
 # Sage imports
 from sage.all import randint, set_random_seed

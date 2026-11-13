@@ -107,7 +107,7 @@ def has_order_D(G, D, multiplicative=False):
     # factors of the order gives the identity of the group
     if len(pis) > 1:
         batch_cofactor_mul_generic(G_list, pis, group_action, 0, len(pis))
-        if not all([not is_identity(G) for G in G_list]):
+        if not all(not is_identity(G) for G in G_list):
             return False
 
     return True

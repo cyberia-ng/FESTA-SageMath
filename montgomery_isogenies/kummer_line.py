@@ -279,7 +279,7 @@ class KummerPoint:
         Equality of two Kummer Points
         """
         if not isinstance(other, KummerPoint):
-            raise ValueError("Can only compare equality between to Kummer Points")
+            raise TypeError("Can only compare equality between to Kummer Points")
         if self._parent != other._parent:
             return False
         return self._X * other._Z == other._X * self._Z
@@ -310,7 +310,6 @@ class KummerPoint:
         return self._X, self._Z
 
     def x(self):
-        r""" """
         if not self._Z:
             raise ValueError("The identity point has no valid x-coordinate")
         if self._Z == 1:
@@ -527,7 +526,7 @@ class KummerPoint:
         if not isinstance(m, (int, Integer)):
             try:
                 m = Integer(m)
-            except:
+            except TypeError:
                 raise TypeError(f"Cannot coerce input scalar {m = } to an integer")
 
         # If m is zero, return identity
@@ -564,8 +563,7 @@ class KummerPoint:
         return self * m
 
     def __imul__(self, m):
-        self = self * m
-        return self
+        return self * m
 
     def ladder_3_pt(self, xP, xPQ, m):
         """
@@ -577,7 +575,7 @@ class KummerPoint:
         if not isinstance(m, (int, Integer)):
             try:
                 m = Integer(m)
-            except:
+            except TypeError:
                 raise TypeError(f"Cannot coerce input scalar {m = } to an integer")
 
         # If m is zero, return xP
