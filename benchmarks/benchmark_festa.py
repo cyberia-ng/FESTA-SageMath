@@ -94,10 +94,8 @@ pr.enable()
 keygen_time = time.time()
 pr_keygen = cProfile.Profile()
 pr_keygen.enable()
-#
 for _ in range(N_KG):
     alice.keygen()
-#
 pr_keygen.disable()
 pr_keygen.dump_stats("festa_keygen.cProfile")
 print_info(f"Keygen took: {(time.time() - keygen_time) / N_KG:.3f} seconds")
@@ -112,10 +110,8 @@ pk = alice.export_public_key()
 encrypt_time = time.time()
 pr_encrypt = cProfile.Profile()
 pr_encrypt.enable()
-#
 for _ in range(N_Enc):
     c = bob.encrypt(pk, m)
-#
 pr_encrypt.disable()
 pr_encrypt.dump_stats("festa_encrypt.cProfile")
 print_info(f"Encrypt took: {(time.time() - encrypt_time) / N_Enc:.3f} seconds")
@@ -129,10 +125,8 @@ p.strip_dirs().sort_stats("cumtime").print_stats(30)
 decrypt_time = time.time()
 pr_decrypt = cProfile.Profile()
 pr_decrypt.enable()
-#
 for _ in range(N_Dec):
     new_m = alice.decrypt(c)
-#
 pr_decrypt.disable()
 pr_decrypt.dump_stats("festa_decrypt.cProfile")
 print_info(f"Decrypt took: {(time.time() - decrypt_time) / N_Dec:.3f} seconds")

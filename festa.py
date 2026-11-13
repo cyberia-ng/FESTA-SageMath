@@ -2,7 +2,7 @@
 from random import randint
 
 # Sage Imports
-from sage.all import EllipticCurve, GF, ceil, Matrix, ZZ, Zmod, inverse_mod
+from sage.all import GF, ZZ, EllipticCurve, Matrix, Zmod, ceil, inverse_mod
 
 # pycryptodome imports
 try:
@@ -16,41 +16,41 @@ except ImportError as e:
     exit()
 
 # Local Imports
-from utilities.supersingular import (
-    torsion_basis,
-    torsion_basis_with_pairing,
-    precompute_elligator_tables,
-    entangled_torsion_basis,
-    compute_canonical_kernel,
-    montgomery_curve_isomorphism,
-)
 from montgomery_isogenies.isogenies_x_only import (
-    isogeny_from_scalar_x_only,
     evaluate_isogeny_x_only,
+    isogeny_from_scalar_x_only,
     random_isogeny_x_only,
 )
 from richelot_isogenies.richelot_isogenies import (
-    compute_richelot_chain,
     compute_Li_from_richelot_chain,
+    compute_richelot_chain,
 )
 from utilities.compression import (
     compress_curve_and_two_torsion_basis,
     decompress_curve_and_two_torsion_basis,
 )
-from utilities.masking import (
-    random_matrix,
-    mask_torsion_points,
-    canonical_matrix,
-)
 from utilities.discrete_log import (
     BiDLP,
-    DLP_power_two,
     BiDLP_power_two,
+    DLP_power_two,
+)
+from utilities.masking import (
+    canonical_matrix,
+    mask_torsion_points,
+    random_matrix,
 )
 from utilities.strategy import optimised_strategy
+from utilities.supersingular import (
+    compute_canonical_kernel,
+    entangled_torsion_basis,
+    montgomery_curve_isomorphism,
+    precompute_elligator_tables,
+    torsion_basis,
+    torsion_basis_with_pairing,
+)
 from utilities.utils import (
-    integer_to_bytes,
     bytes_to_integer,
+    integer_to_bytes,
 )
 
 
@@ -696,7 +696,6 @@ class FESTA:
             im_basis_d2_EA,  # phi_A2_dual(EA[d2])
         )
 
-        return
 
     def export_public_key(self):
         """
@@ -768,7 +767,7 @@ class FESTA:
         m_prime = Zmod(self.d1)(s - self.G(r, R))
         m_prime = int(m_prime)
         if m_prime & ((1 << self.k) - 1):
-            print(f"Non zero bits in the padding")
+            print("Non zero bits in the padding")
             return False
 
         # Extract m by removing the bottom k bits

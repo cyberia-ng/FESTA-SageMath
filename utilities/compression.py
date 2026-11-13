@@ -6,17 +6,18 @@ main (de)compression functions of FESTA(+).
 # Sage imports
 from sage.all import EllipticCurve, inverse_mod
 
-# Local imports
-from utilities.supersingular import entangled_torsion_basis
-from utilities.pairing import tate_pairing_pari
 from utilities.discrete_log import (
     BiDLP_power_two,
     DLP_power_two,
     windowed_pohlig_hellman,
 )
+from utilities.pairing import tate_pairing_pari
+
+# Local imports
+from utilities.supersingular import entangled_torsion_basis
 from utilities.utils import (
-    integer_to_bytes,
     bytes_to_integer,
+    integer_to_bytes,
 )
 
 # ======================================================== #

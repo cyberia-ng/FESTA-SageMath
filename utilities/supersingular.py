@@ -3,15 +3,14 @@ Helper functions for the supersingular elliptic curve computations in FESTA
 """
 
 # Sage Imports
-from sage.all import ZZ, factor, inverse_mod, CRT
+from sage.all import CRT, ZZ, factor, inverse_mod
 
 # Local imports
 from montgomery_isogenies.kummer_line import KummerLine
-
+from utilities.discrete_log import BiDLP
+from utilities.fast_roots import quadratic_roots, sqrt_Fp2
 from utilities.order import has_order_D
 from utilities.pairing import weil_pairing_pari
-from utilities.discrete_log import BiDLP
-from utilities.fast_roots import sqrt_Fp2, quadratic_roots
 
 # =========================================== #
 #   Extract coefficent from Montgomery curve  #
@@ -140,7 +139,7 @@ def generate_point_order_D(E, D, x_start=0, even_power=None):
         if has_order_D(P, D):
             yield P.curve_point()
 
-    raise ValueError(f"Never found a point P of order D.")
+    raise ValueError("Never found a point P of order D.")
 
 
 def compute_point_order_D(E, D, x_start=0, even_power=None):
@@ -198,7 +197,7 @@ def torsion_basis_with_pairing(E, D, even_power=None):
     if (p + 1) % D != 0:
         print(f"{factor(D) = }")
         print(f"{factor(p+1) = }")
-        raise ValueError(f"D must divide the point's order")
+        raise ValueError("D must divide the point's order")
 
     P = compute_point_order_D(E, D, even_power=even_power)
     Q, ePQ = compute_linearly_independent_point_with_pairing(

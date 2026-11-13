@@ -1,4 +1,4 @@
-from sage.all import Matrix, ZZ
+from sage.all import ZZ, Matrix
 
 # ============================== #
 #  Utility functions for masking #

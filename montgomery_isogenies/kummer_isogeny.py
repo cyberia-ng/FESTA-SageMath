@@ -60,7 +60,7 @@ Future Work:
 """
 
 # Sage imports
-from sage.all import prod, ZZ, PolynomialRing
+from sage.all import ZZ, PolynomialRing, prod
 from sage.rings.generic import ProductTree
 
 # Local imports
@@ -83,7 +83,6 @@ class KummerLineIsogeny_Generic:
         self._degree = None
         self._domain = None
         self._codomain = None
-        pass
 
     def __repr__(self):
         return f"Isogeny of degree {(self._degree).factor()} from {self._domain} to {self._codomain}"

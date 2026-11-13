@@ -2,8 +2,7 @@
 from sage.all import ZZ
 
 # Local imports
-from utilities.pairing import pari, weil_pairing_pari, tate_pairing_pari
-
+from utilities.pairing import pari, tate_pairing_pari, weil_pairing_pari
 
 # ===================================== #
 #  Fast DLP solving using Weil pairing  #

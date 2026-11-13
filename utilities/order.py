@@ -1,4 +1,4 @@
-from sage.all import ZZ, prod, cached_function
+from sage.all import ZZ, cached_function, prod
 from sage.schemes.elliptic_curves.ell_point import EllipticCurvePoint_field
 
 from montgomery_isogenies.kummer_line import KummerPoint
@@ -24,7 +24,7 @@ def batch_cofactor_mul_generic(G_list, pis, group_action, lower, upper):
 
     # check that indices are valid
     if lower > upper:
-        raise ValueError(f"Wrong input to cofactor_multiples()")
+        raise ValueError("Wrong input to cofactor_multiples()")
 
     # last recursion step does not need any further splitting
     if upper - lower == 1:

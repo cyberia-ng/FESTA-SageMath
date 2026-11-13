@@ -63,11 +63,10 @@ import cypari2
 
 pari = cypari2.Pari()
 
-from sage.all import cached_method, Integer, EllipticCurve
-
-from sage.structure.element import RingElement
+from sage.all import EllipticCurve, Integer, cached_method
 from sage.schemes.elliptic_curves.ell_generic import EllipticCurve_generic
 from sage.schemes.elliptic_curves.ell_point import EllipticCurvePoint_field
+from sage.structure.element import RingElement
 
 from utilities.fast_roots import sqrt_Fp2
 

@@ -1,9 +1,9 @@
 # Sage imports
 from sage.all import (
-    ZZ,
     GF,
-    proof,
+    ZZ,
     cached_method,
+    proof,
 )
 
 # ====================================== #

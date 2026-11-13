@@ -31,13 +31,13 @@ attack, as well as the variant of the attack described by Oudompheng. See:
 
 # Sage imports
 from sage.all import (
-    PolynomialRing,
     EllipticCurve,
     Matrix,
+    PolynomialRing,
 )
 
 # local imports
-from richelot_isogenies.divisor_arithmetic import affine_dbl_iter, affine_add
+from richelot_isogenies.divisor_arithmetic import affine_add, affine_dbl_iter
 from utilities.pairing import weil_pairing_pari
 from utilities.polynomial_inversion import (
     invert_mod_polynomial_quadratic,

@@ -18,14 +18,15 @@ result back to full points on the codomain curves.
 """
 
 # Sage imports
-from sage.all import gcd, randint
+from sage.all import gcd
 from sage.structure.element import RingElement
+
+from montgomery_isogenies.kummer_isogeny import KummerLineIsogeny
 
 # Local Imports
 from montgomery_isogenies.kummer_line import KummerLine
-from montgomery_isogenies.kummer_isogeny import KummerLineIsogeny
-from utilities.supersingular import torsion_basis, compute_point_order_D
 from utilities.pairing import weil_pairing_pari
+from utilities.supersingular import compute_point_order_D, torsion_basis
 
 # =========================================================== #
 #    Compute an isogeny and codomain using x-only algorithms  #
