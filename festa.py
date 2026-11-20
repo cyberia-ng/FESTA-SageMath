@@ -83,11 +83,14 @@ class FESTA:
         else:
             self.SHAKE = SHAKE128
 
+        # This now needs to be updated based on "Algorithmic" paper (theta model)
         # (l^b, l^b)-Richelot chain
         self.l = params["l"]
         self.b = params["b"]
         self.l_power = self.l**self.b
         self.strategy = optimised_strategy(self.b - 1)
+        ### ^^^
+
         self.Rlb = Zmod(self.l_power)
 
         # phi_i isogeny degrees
@@ -141,18 +144,23 @@ class FESTA:
         self.E0.set_order((self.p + 1) ** 2)
 
         # For fast 2^k torsion basis and dlogs
+        ## This is speeding up discrete logs - naive impl could omit
         self.cofactor = (self.p + 1) // self.l_power
         self.elligator_tables = precompute_elligator_tables(self.F)
         self.window = params["window"]
 
         # For magic square root in splitting
+        ## Richelot specific stuff - can omit
         self.N_constant = self.F(N1 + N2) / self.F(N1 - N2)
 
         # Pre-compute canonical torsion basis for E0[l^b] and E0[d1]
         # self.Pb, self.Qb = torsion_basis(self.E0, self.l_power)
+        ## TODO?: SQISign might have faster torsion basis computation (only for 2^b, i.e. l = 2)
         self.Pb, self.Qb = entangled_torsion_basis(
             self.E0, self.elligator_tables, self.cofactor
         )
+        ### ^^^
+
         self.Pd1, self.Qd1 = torsion_basis(self.E0, self.d1, even_power=self.b)
 
         # Compute the byte length of integers for compression
@@ -162,7 +170,7 @@ class FESTA:
         self.pk_bytes = 2 * self.p_byte_len + 3 * self.l_power_byte_len
 
         # Pick whether masking matrices are diagonal or circulant
-        self.diag = diag
+        self.diag = diag # = True :-)
 
         # Internal values for key generation
         self.pk = None
@@ -400,6 +408,7 @@ class FESTA:
 
         # Compute phi_1, the action of phi_1 on E0[2^b]
         # E1 = E0 / <P + [s1] Q>, E0[d1] = <P, Q>
+        ## TODO Uses Vélu OR later sqrt vélu
         phi_1, E1 = isogeny_from_scalar_x_only(
             self.E0, self.d1, s1, basis=(self.Pd1, self.Qd1)
         )
@@ -517,6 +526,7 @@ class FESTA:
 
     @staticmethod
     def recover_correct_image(L1, L2, EA_prime):
+        ## Might fall out of the theta chain stuff (actually won't because we won't be doing the fast way)
         L1_left, L1_right = L1.points()
         L2_left, L2_right = L2.points()
 
@@ -582,6 +592,7 @@ class FESTA:
         ker_Phi = (glue_P1, glue_Q1, glue_P2, glue_Q2)
 
         # Compute the (l^b, l^b)-chain
+        ## Changes to compute_theta_chain and compute images of Li_j above
         Phi = compute_richelot_chain(ker_Phi, self.b, self.N_constant, self.strategy)
 
         # Compute L1 and L2 by evaluating Phi on the following points
@@ -590,6 +601,7 @@ class FESTA:
         L1_preimage = (L1_1, L1_2)
         L2_preimage = (L2_1, L2_2)
         L1, L2 = compute_Li_from_richelot_chain(EA_prime, Phi, L1_preimage, L2_preimage)
+        ## ^^^^^
 
         # Recover the secrets s1, s2 and B from the data of L1 and L2
         s1, s2, B = self._recover_si_and_B(L1, L2, im_basis_bd1_E0, im_basis_d2_EA)
@@ -624,6 +636,7 @@ class FESTA:
         # The isogeny phi_A is equal to phi_A2_tilde \circ phi_A1_tilde
         # Step one: compute the isogeny phi_A1 : E0 -> EA_prime of degree dA1
         # together with phi_A1(Pb) and phi_A1(Qb) and phi_A1(Pd1) and phi_A1(Qd1)
+        ## This is for a good reason Giacomo promises - might be in the paper
         phi_A1, EA_prime = random_isogeny_x_only(self.E0, self.dA1, even_power=self.b)
         imPd1b, imQd1b = evaluate_isogeny_x_only(
             phi_A1,
@@ -673,6 +686,7 @@ class FESTA:
         # Compute canonical torsion basis on EA for the dlogs
         PA_d2, QA_d2, ePQA = torsion_basis_with_pairing(EA, self.d2, even_power=self.b)
 
+        ## DLP is discrete log problem; this one uses Weyl pairing
         a1, b1 = BiDLP(PA_d2, imPAd2, imQAd2, self.d2, ePQ=ePQA)
         a2, b2 = BiDLP(QA_d2, imPAd2, imQAd2, self.d2, ePQ=ePQA)
 
